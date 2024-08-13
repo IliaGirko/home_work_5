@@ -5,6 +5,7 @@ description = ""
 authors = ["Илья Гирько <Gggggirr@gmail.com>"]
 readme = "README.md"
 
+
 [tool.poetry.dependencies]
 python = "^3.12"
 
@@ -16,6 +17,7 @@ mypy = "^1.11.1"
 black = "^24.8.0"
 pytest = "^8.3.2"
 pytest-cov = "^5.0.0"
+
 
 [build-system]
 requires = ["poetry-core"]
