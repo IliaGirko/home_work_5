@@ -5,7 +5,10 @@
 + Cкрывает номер карты и номер счета(функция `mask_account_card`);
 + Обрабатывающее дату и редактирующая ее в читаемый формат(функция `get_date`);
 + Сортирует список словарей по состоянию(функция `filter_by_state`);
-+ Сортирует список словарей по дате(функция `sort_by_date`).
++ Сортирует список словарей по дате(функция `sort_by_date`);
++ Фильтрует банковские операции по заданному типу валюты(функция `filter_by_currency`)
++ Описывает транзакции(функция `transaction_descriptions`)
++ Генерирует рандомный номер карты(функция `card_number_generator`)
 
 ## Использование
 Для запуска приложения необходимо:
@@ -18,7 +21,7 @@ git clone https://github.com/IliaGirko/home_work_03.git
 ```
 poetry install
 ```
-3. Используйте приложение в файлах *widget.py* и *processing.py*
+3. Используйте приложение в файлах *widget.py* и *processing.py* и *generators.py*
 
 ## Пример работы функции *widget.py*
 ### Пример для карты, функция `mask_account_card`:
@@ -90,8 +93,78 @@ poetry install
 {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}
 ] 
 ```
+## Пример работы функции *generators.py*
+### Пример фильтрации банковских операций по заданному типу валюты, функция `filter_by_currency`:
+1. Снимаем коментарии с этого блока кода:
+```
+# usd_transactions: list[Union[str | int]] = filter_by_currency(transactions, currency="USD")
+# for i in range(2):
+#     try:
+#         print(next(usd_transactions))
+#     except TypeError:
+#         print("Не введена валюта для фильтрации")
+#         break
+#     except StopIteration:
+#         print("Генератор исчерпан")
+#         break
+```
+2. В качестве аргумента, в функцию filter_by_currency передаем список транзакций в формате: 
+```
+[
+    {
+        "id": 939719570,
+        "state": "EXECUTED",
+        "date": "2018-06-30T02:08:58.425572",
+        "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+        "description": "Перевод организации",
+        "from": "Счет 75106830613657916952",
+        "to": "Счет 11776614605963066702",
+    }
+]
+```
+и вид валюты, для фильтрации("USD"/"RUB"/"EUR"...)
+
+### Пример вывода описания транзакции, функция `transaction_descriptions`:
+1. Снимаем коментарии с этого блока кода:
+```
+# descriptions = transaction_descriptions(transactions)
+# if len(transactions) != []:
+#     for i in range(len(transactions)):
+#         print(next(descriptions))
+# else:
+#     print("Список транзакций пуст")
+```
+2. В качестве аргумента, в функцию transaction_descriptions передаем список транзакций в формате: 
+```
+[
+    {
+        "id": 939719570,
+        "state": "EXECUTED",
+        "date": "2018-06-30T02:08:58.425572",
+        "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+        "description": "Перевод организации",
+        "from": "Счет 75106830613657916952",
+        "to": "Счет 11776614605963066702",
+    }
+]
+```
+3. В качестве вывода данной функции в этом примере будет строка: "Перевод организации"
+
+### Пример генерации рандомного номера карты, функция `card_number_generator`:
+1. Снимаем коментарии с этого блока кода:
+```
+# for card_number in card_number_generator(1, 5):
+#     print(card_number)
+```
+2. В качестве аргумента, в функцию card_number_generator передаем число в формате: 
+```
+start = 1, stop = 5
+```
+3. В качестве вывода данной функции в этом примере будет строка: "0000 0000 0000 000n", где n - случайно 
+сгенерированный номер
+
 ## Code coverage
-Code coverage достигает 92%
+Code coverage достигает 94%
 
 ## Лицензии
 Проект распространяеется под [лицензией MIT](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)
