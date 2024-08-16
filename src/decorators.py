@@ -4,6 +4,9 @@ from typing import Any, Callable
 
 
 def log(filename: str | None = None) -> Callable:
+    """Декоратор который автоматически регистрирует детали выполнения функций, такие как время вызова,
+    имя функции, передаваемые аргументы, результат выполнения и информацию об ошибках"""
+
     def wrapper(func: Callable) -> Callable:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
@@ -29,7 +32,7 @@ def log(filename: str | None = None) -> Callable:
 
 
 @log(filename="mylog.txt")
-def my_function(x: int | float, y: int| float) -> int| float:
+def my_function(x: int | float, y: int | float) -> int | float:
     """Функция проверки"""
     return x + y
 
