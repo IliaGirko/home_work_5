@@ -1,0 +1,3 @@
+Start of function execution 1723819625.9047751
+my_function ok
+Еnd of function execution 1723819625.9047751

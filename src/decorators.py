@@ -29,9 +29,9 @@ def log(filename: str | None = None) -> Callable:
 
 
 @log(filename="mylog.txt")
-def my_function(x, y):
+def my_function(x: int | float, y: int| float) -> int| float:
     """Функция проверки"""
     return x + y
 
 
-my_function(2, 3)
+my_function(2.2, 3)
