@@ -24,7 +24,7 @@ def currency_conversion(transaction: dict[str | Any]) -> float | str:
                 response = requests.get(url, headers=headers)
                 repo = response.json()
                 result = round(repo["result"], 2)
-                return result
+                return float(result)
             elif code_currency == "EUR":
                 url = (
                     f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=EUR&amount={transaction_amount}"
@@ -32,7 +32,7 @@ def currency_conversion(transaction: dict[str | Any]) -> float | str:
                 response = requests.get(url, headers=headers)
                 repo = response.json()
                 result = round(repo["result"], 2)
-                return result
+                return float(result)
             else:
                 return "Не корректная валюта"
         except KeyError:
