@@ -16,11 +16,11 @@ def log(filename: str | None = None) -> Callable:
                 result: Callable = func(*args, **kwargs)
                 log_message: str = f"{func.__name__} ok"
             except Exception as type_error:
-                log_message: str = f"{func.__name__} error: {type_error.__class__.__name__}. Inputs: {args}, {kwargs}"
+                log_message = f"{func.__name__} error: {type_error.__class__.__name__}. Inputs: {args}, {kwargs}"
             time_end: float = time()
             message_end: str = f"\nЕnd of function execution {time_end}"
-            if filename != None:
-                with open(filename, "a", encoding="UTF-8") as file:
+            if filename:
+                with open(filename, "w", encoding="UTF-8") as file:
                     file.write(f"{message_start}{log_message}{message_end}")
             else:
                 return print(f"{message_start}{log_message}{message_end}")
