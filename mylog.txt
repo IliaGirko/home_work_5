@@ -1,3 +1,3 @@
-Start of function execution 1725614995.567345
+Start of function execution 1725623548.3777452
 my_function ok
-Еnd of function execution 1725614995.567345
+Еnd of function execution 1725623548.3777452
