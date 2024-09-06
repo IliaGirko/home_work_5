@@ -1,5 +1,5 @@
 import random
-from typing import Iterable, Union
+from typing import Iterable, Union, Any
 
 transactions = [
     {
@@ -51,8 +51,8 @@ transactions = [
 
 
 def filter_by_currency(
-    transaction: list[Union[str | int]], currency: str | None = None
-) -> Iterable[Union[str | int]] | Iterable[str]:
+    transaction: list[Union[Any | Any]], currency: str | None = None
+) -> Iterable[Union[Any | Any]] | Iterable[str]:
     """Функция принимающая список словарей и возвращающая итератор для фильтрации по заданному типу валюты"""
     if len(transaction) == []:
         return "Список транзакций пуст"

@@ -9,7 +9,7 @@ def mask_account_card(number_card_or_check_client: str) -> str | None:
     list_split_number_card_and_name: list[str] = number_card_or_check_client.split()
     list_word_name_card: list = []
     for number_or_word in list_split_number_card_and_name:
-        if number_or_word.isdigit() == True:
+        if number_or_word.isdigit():
             continue
         else:
             list_word_name_card.append(number_or_word)
