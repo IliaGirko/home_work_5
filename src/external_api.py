@@ -11,10 +11,10 @@ api_key_conversion = os.getenv("API_KEY")
 def currency_conversion(transaction: dict[str | Any]) -> float | str:
     """Функция возвращающяя сумму операции в рублях, если валюта доллар или евро, то конвертирует в рубли"""
     headers: dict = {"apikey": api_key_conversion}
-    for i in range(len(transaction)):
+    for i in transaction:
         try:
-            code_currency: str = transaction[i]["operationAmount"]["currency"]["code"]
-            transaction_amount: str = transaction[i]["operationAmount"]["amount"]
+            code_currency: str = i.get("operationAmount").get("currency").get("code")
+            transaction_amount: str = i.get("operationAmount").get("amount")
             if code_currency == "RUB":
                 return float(transaction_amount)
             elif code_currency == "USD":
@@ -23,7 +23,7 @@ def currency_conversion(transaction: dict[str | Any]) -> float | str:
                 )
                 response = requests.get(url, headers=headers)
                 repo = response.json()
-                result = round(repo["result"], 2)
+                result = round(repo.get("result"), 2)
                 return float(result)
             elif code_currency == "EUR":
                 url = (
@@ -31,10 +31,12 @@ def currency_conversion(transaction: dict[str | Any]) -> float | str:
                 )
                 response = requests.get(url, headers=headers)
                 repo = response.json()
-                result = round(repo["result"], 2)
+                result = round(repo.get("result"), 2)
                 return float(result)
             else:
                 return "Не корректная валюта"
         except KeyError:
+            continue
+        except AttributeError:
             continue
     return "Не корректная транзакция"
