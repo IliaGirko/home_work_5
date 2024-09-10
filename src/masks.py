@@ -1,6 +1,5 @@
 import logging
 
-
 logger = logging.getLogger("masks.py")
 logger.setLevel(logging.DEBUG)
 logger_handler = logging.FileHandler("logs/masks.log", "w")

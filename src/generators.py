@@ -1,5 +1,5 @@
 import random
-from typing import Iterable, Union, Any
+from typing import Any, Iterable, Union
 
 transactions = [
     {
