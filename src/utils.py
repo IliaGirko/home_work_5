@@ -1,10 +1,9 @@
 import json
+import logging
 import os
 from typing import Any
 
 from dotenv import load_dotenv
-import logging
-
 
 logger = logging.getLogger("utils.py")
 logger.setLevel(logging.DEBUG)
