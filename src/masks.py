@@ -16,8 +16,13 @@ correct_card_names: list[str] = [
     "Visa Classic",
     "Visa Platinum",
     "Visa Gold",
+    "Visa",
     "Maestro",
     "MasterCard",
+    "Mastercard",
+    "МИР",
+    "Discover",
+    "American Express",
 ]
 
 
@@ -63,7 +68,7 @@ def get_mask_account(full_number_card: str) -> str | None:
             list_word_name_card.append(number_or_word)
     str_word_name_card: str = " ".join(list_word_name_card)
     str_number_card: str = "".join(list_numbers_name_card)
-    logger.info("Проверяем корректнойть введенных данных")
+    logger.info("Проверяем корректность введенных данных")
     if "Счет" == str_word_name_card and len(str_number_card) == 20:
         logger.info("Завершение работы функции get_mask_account")
         return f"{full_number_card[:4]} {"*" * 2}{full_number_card[-4:]}"
